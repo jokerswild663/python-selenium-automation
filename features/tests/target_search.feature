@@ -10,4 +10,3 @@ Feature: Target.com navigation
     |entry|
     |chair|
     |tea  |
-    |beds |
