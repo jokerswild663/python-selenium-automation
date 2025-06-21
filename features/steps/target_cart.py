@@ -3,7 +3,7 @@ from behave import given, when, then
 from time import sleep
 from selenium.webdriver.support import expected_conditions as EC
 
-CART_ICON=(By.CSS_SELECTOR,"div[data-test='@web/CartIcon'] svg")
+# CART_ICON=(By.CSS_SELECTOR,"div[data-test='@web/CartIcon'] svg")
 CART_ICON_FROM_SEARCH=(By.CSS_SELECTOR, "div[style='display: inline-block;'] button[class*='styles_ndsBaseButton']")
 CART_ICON_FROM_PANEL=(By.CSS_SELECTOR, "button[data-test='orderPickupButton']")
 CART_ITEM=(By.CSS_SELECTOR,"h2[data-test='modal-drawer-heading'] span.h-text-lg")
@@ -11,7 +11,7 @@ CART_ITEMS=(By.CSS_SELECTOR, "div.product-image img")
 
 @when("click cart {cart_icon}")
 def click_cart(context,cart_icon):
-    context.driver.find_element(*CART_ICON).click()
+    context.app.cart.click_cart()
 
 
 @when("click add to cart from search")
@@ -37,7 +37,6 @@ def verify_in_cart(context,item):
 
 @then("verify {object} empty")
 def cart_empty(context,object):
-    products_in_cart=context.driver.find_elements(*CART_ITEMS)
-    assert len(products_in_cart) == 0
+    context.app.cart.verify_cart_empty('Your cart is empty')
 
 
