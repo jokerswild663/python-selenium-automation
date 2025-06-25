@@ -9,8 +9,7 @@ SEARCH_RESULT=(By.CSS_SELECTOR,"span.h-text-bs.h-text-grayDark")
 
 @when("target search {entry}")
 def target_search(context,entry):
-    context.driver.wait.until(EC.visibility_of_element_located(SEARCH_INPUT)).send_keys(entry)
-    context.driver.wait.until(EC.element_to_be_clickable(SEARCH_SUBMIT)).click()
+    context.app.header.search_product(entry)
 
 @then("verify search {entry}")
 def verify_search(context,entry):
