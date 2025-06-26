@@ -23,3 +23,24 @@ class Page:
         self.driver.wait.until(EC.visibility_of_element_located(locator))
         elements=self.driver.find_elements(*locator)
         assert len(elements) > 0, f"actual length: {len(elements)}"
+
+    def get_current_window_id(self):
+        window = self.driver.current_window_handle
+        return window
+
+    def get_all_windows(self):
+        windows = self.driver.window_handles
+        return windows
+
+    def switch_to_window_by_id(self,window_id):
+        self.driver.switch_to.window(window_id)
+        return self.driver.current_window_handle
+
+    def verify_windows(self,window_id):
+        assert self.get_current_window_id() == window_id, f"{self.get_current_window_id()} != {window_id}"
+
+    def verify_partial_url(self,expected_partial_url):
+        assert expected_partial_url in self.driver.current_url, f"{expected_partial_url} != {self.driver.current_url}"
+
+    def close_window(self):
+        self.driver.close()

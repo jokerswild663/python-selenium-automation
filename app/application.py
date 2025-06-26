@@ -4,6 +4,7 @@ from pages.header import Header
 from pages.search_results import SearchResultsPage
 from pages.cart import Cart
 from pages.sign_in import SignIn
+from pages.terms_conditions import TermsConditions
 
 
 class Application:
@@ -14,3 +15,4 @@ class Application:
         self.search_results = SearchResultsPage(driver)
         self.cart = Cart(driver)
         self.sign_in = SignIn(driver)
+        self.terms_conditions = TermsConditions(driver)
