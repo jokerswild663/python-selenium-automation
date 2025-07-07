@@ -16,3 +16,12 @@ def click_sign_in(context,button):
 def sign_in_page_loaded(context,page):
     expected='Sign in or create account'
     context.app.sign_in.verify_sign_in(expected)
+
+@when("enter username and wrong password")
+def enter_username(context):
+    context.app.sign_in.enter_username()
+    context.app.sign_in.enter_wrong_password()
+
+@then("verify wrong password message")
+def verify_password_wrong(context):
+    context.app.sign_in.verify_wrong_password('Please enter a valid password')

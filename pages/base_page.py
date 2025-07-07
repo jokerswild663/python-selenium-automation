@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
 
 class Page:
@@ -15,7 +17,7 @@ class Page:
     def input_text(self,text,*locator):
         self.driver.find_element(*locator).send_keys(text)
 
-    def verify_text(self,expected_text,*locator):
+    def verify_text(self,expected_text,locator):
         actual_text=self.driver.wait.until(EC.visibility_of_element_located(locator)).text
         assert actual_text == expected_text, f"actual: {actual_text}, expected: {expected_text}"
 
@@ -44,3 +46,8 @@ class Page:
 
     def close_window(self):
         self.driver.close()
+
+    def select_dropdown(self,selection,locator):
+        select = Select(locator)
+        select.select_by_value(selection)
+
